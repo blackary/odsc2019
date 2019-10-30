@@ -22,3 +22,5 @@ Deep learning -- little time feature engineering, less time modeling
 
 ### Dense networks
 - Full-connected -- each layer is densely-connected to each other layer
+
+https://nbviewer.jupyter.org/ -- viewing shared jupyter notebook
