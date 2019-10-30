@@ -170,3 +170,38 @@ Gradient descent -- used across ML models
 - Split up training data into mini-batches (`batch_size=128` when fitting)
 - Does gradient descent on each mini-batch
 - Helps solve the problem of getting stuck in local minima
+- May need to resample from less-popular classes, so that the distribution
+  is the same (e.g. if most of the examples are negative, may need to
+  over-sample from positive)
+- Learning rate -- how big of a step to take
+    - Don't really need to worry about the learning rate, because the
+      learning rate can be adaptively learned by second-order algorithms,
+      (e.g. Nadam) -- can vary across each parameter
+    - With Nadam, the learning rate tends to be fast at the beginning, and 
+      slows down as training goes on
+
+*Avoiding Overfitting*
+- Dropout - randomly remove some portion of neurons from a given layer
+  during training
+    - Prevents any given neuron from being too influencial, and memorizing
+    - Especially important in later layers
+    - At inference time, it uses all of the neurons again, but has to
+      scale the weights
+- Data Augmentation
+    - Adding noise, rotation, etc.
+
+http://playground.tensorflow.org/
+
+*Deep learning network*
+- Network with 3 or more hidden layers, so 5 layers total
+
+Sequential in Keras -- the output from one layer flows immediately into
+the next
+
+https://colab.research.google.com/drive/1W6u6BZocKA6DYhnYygzR_Y7cNA9Mr6sS#scrollTo=GIVzBGIfEEfh
+
+Can use pre-trained model as one of layers (e.g. a generalized image
+classifier), and use transfer learning to use it for a more specific case
+
+Hard limit on batch size -- how much memory you have on your machine
+Recommended limit -- max of 128
