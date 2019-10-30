@@ -8,6 +8,9 @@ github.com/jonkrohn/tf2 -- cloned as submodule
 
 Notebooks can be used in colab, e.g. https://colab.research.google.com/github/jonkrohn/tf2/blob/master/notebooks/deep_net.ipynb
 
+https://github.com/jonkrohn/DLTFpT/blob/master/installation/macOS.md --
+instructions for installing dependencies in Docker
+
 Simple cells - straight lines
 Complex cells - corners and curves
 More complex cells - more complex shapes
@@ -92,3 +95,78 @@ Brain cell -- receives signals from 1000s of other cells
 
 Perceptron -- simplest artificial neuron -- multiple inputs, single output
 - Neuron itself does a calculation, based on the weights of each input
+- Two parameters - weights and threshold
+
+`Output = {1 if w * x + b > 0; 0 otherwise}`
+
+Input later, "hidden layers", output layer
+
+Dense network -- every neuron in a layer receives input from every neuron
+in the previous layer
+
+Input layer -- just a placeholder with a shape, doesn't do any computation
+
+Output - y^ (hat) 
+
+Perceptrons - only have binary inputs and outputs, we would like to have
+continuous inputs/outputs
+- Adjusting weights and biases will most of the time have no impact on the
+  output -- 0 will stay 0, 1 will stay 1, only some times will it change
+  at all
+
+Activation function -- pass wx + b through this function to get
+a continuous value
+- Most popular activation function - sigmoid -- goes from 0 to 1, with
+  mean of 0
+- Sigmoid not used in hidden layers, because learning happens faster when
+  the mean is closer to 0 -- related to partial derivatives
+- More popular is now tanh (pronounced "tanch") -- goes from -1 to 1, mean
+  of 0
+- Most popular is Rectified Linear Unit (ReLU) -- max(0, z)
+    - If z (`w*x + b`) < 0, just returns 0
+    - if z >= 0, just returns z
+- It's incredibly simple, but performs better than a curve
+- Needs to be non-linear in hidden layer
+
+Google "tensorflow keras activations"
+- https://www.tensorflow.org/api_docs/python/tf/keras/activations
+- Linear should only be used for output neurons where the goal is to get
+  a continuous value, not a classification
+
+Gradient descent -- used across ML models
+- Can't use it on its own in Neural Networks, because of all the layers
+- Backpropogation + Gradient Descent
+- Allows the weights and biases to be learned backwards
+- Weights and biases on output layer have the greatest impact on y-hat
+- The more layers you have, the harder it is to train the earlier layers
+- Practical limit -- maybe 1 or 2 dozen layers, before back-propogation
+  stops working
+
+## Your arsenal
+
+*Neurons*
+- sigmoid
+- tanh
+- ReLU
+
+*Cost Functions*
+- quadratic cost -- (sum of squares of differences) - Mean Squared Error
+    - Why square? Makes cost positive, and quadratically penalizes errors
+- cross-entropy -- good for classification
+
+*Layers*:
+- dense -- sends input to all neurons
+- Softmax layer
+    - Makes everything between 0 and 1, and sum to 1
+
+*Initialization*
+- Can't initialize weights to all be 0, because otherwise there will be no 
+  variety
+- Can't just use normal distribution, because you want to scale initial
+  weight values based on how many inputs/outputs -- if it has more
+  inputs/outputs, it should have a smaller weight
+
+*Stochastic Gradient Descent*
+- Split up training data into mini-batches (`batch_size=128` when fitting)
+- Does gradient descent on each mini-batch
+- Helps solve the problem of getting stuck in local minima
