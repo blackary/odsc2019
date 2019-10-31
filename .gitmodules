@@ -1,3 +1,6 @@
 [submodule "2019-10-30/tf2"]
 	path = 2019-10-30/tf2
 	url = https://github.com/jonkrohn/tf2
+[submodule "2019-10-30/model-fairness-in-practice"]
+	path = 2019-10-30/model-fairness-in-practice
+	url = https://github.com/neptune-ml/model-fairness-in-practice.git
