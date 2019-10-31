@@ -15,3 +15,9 @@ Data Science (Jupyter, etc.) Notebook - a good place to make a quick catalog sol
 - Easy to update
 
 Model complexity - tradeoff between accuracy, cost & time -- choose 2
+
+Most important thing to monitor: Prediction Bias
+    - "average of predictions" ~ "average of observations"
+
+Minimize handoffs as much as possible, and greatly increase communication
+when that has to happen
