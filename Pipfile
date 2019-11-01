@@ -12,6 +12,7 @@ jupyterlab = "*"
 matplotlib = "*"
 numpy = "*"
 pandas = "*"
+mlflow = "*"
 
 [requires]
 python_version = "3.6"
